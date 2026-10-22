@@ -1,8 +1,8 @@
 // Constancia en PDF con código y QR de validación. Se genera en el
 // navegador; lo que la hace auténtica es el registro en constancias/{codigo},
 // que cualquiera puede consultar en #/validar/{codigo}.
-import { SITE_URL } from "./config.js?v=20261022132627";
-import { cargarScript, fechaLarga } from "./ui.js?v=20261022132627";
+import { SITE_URL } from "./config.js?v=20261022140330";
+import { cargarScript, fechaLarga } from "./ui.js?v=20261022140330";
 
 const JSPDF = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
 const QR = "https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js";

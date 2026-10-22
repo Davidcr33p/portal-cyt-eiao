@@ -51,7 +51,7 @@ service cloud.firestore {
       function concurso() { return get(/databases/$(database)/documents/concursos/$(cid)).data; }
       function inscrito() { return exists(/databases/$(database)/documents/concursos/$(cid)/inscripciones/$(request.auth.uid)); }
 
-      allow read: if resource.data.publicado == true || isStaff();
+      allow read: if resource.data.get('publicado', false) == true || isStaff();
       allow write: if isStaff();
 
       // Las preguntas solo se pueden leer cuando el concurso ya empezó.
@@ -61,13 +61,13 @@ service cloud.firestore {
       }
       // Respuestas correctas: solo staff, y todos al publicar resultados.
       match /clave/{pid} {
-        allow read: if isStaff() || concurso().resultadosPublicados == true;
+        allow read: if isStaff() || concurso().get('resultadosPublicados', false) == true;
         allow write: if isStaff();
       }
       match /inscripciones/{uid} {
         allow read: if (signedIn() && request.auth.uid == uid) || isStaff();
         allow create: if verified() && request.auth.uid == uid
-          && concurso().publicado == true
+          && concurso().get('publicado', false) == true
           && request.time < concurso().fin
           && request.resource.data.uid == uid;
         allow delete: if (signedIn() && request.auth.uid == uid && request.time < concurso().inicio) || isStaff();
@@ -83,14 +83,14 @@ service cloud.firestore {
           && request.resource.data.actualizadoEn == request.time;
         allow update: if verified() && request.auth.uid == uid && inscrito()
           && request.time >= concurso().inicio && request.time <= concurso().fin
-          && resource.data.enviado != true
+          && resource.data.get('enviado', false) != true
           && request.resource.data.uid == uid
           && request.resource.data.actualizadoEn == request.time;
         allow delete: if isStaff();
       }
       // Resultados (los escribe el staff al calificar): públicos al publicarse.
       match /resultados/{uid} {
-        allow read: if isStaff() || concurso().resultadosPublicados == true;
+        allow read: if isStaff() || concurso().get('resultadosPublicados', false) == true;
         allow write: if isStaff();
       }
     }

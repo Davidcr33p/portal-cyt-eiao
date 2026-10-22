@@ -1,7 +1,7 @@
 // Acceso a Firestore. Todas las consultas usan índices de un solo campo
 // (automáticos) para no tener que administrar índices compuestos; los
 // ordenamientos combinados se hacen en el navegador.
-import { db } from "./firebase.js?v=20261022132627";
+import { db } from "./firebase.js?v=20261022140330";
 import {
   collection,
   doc,

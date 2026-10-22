@@ -1,9 +1,9 @@
 // Vista de una materia (#/recursos/:materia/:pestana) con pestañas:
 // Temario, Documentos, Vídeos, Formularios y Prácticas.
-import { materiaPorId, TIPOS_RECURSO, PREGUNTAS_POR_PRACTICA } from "./config.js?v=20261022132627";
-import { listar, obtener, where } from "./datos.js?v=20261022132627";
-import { sesion, esStaff } from "./sesion.js?v=20261022132627";
-import { esc, vacio, youtubeId, urlVistaPrevia, fechaCorta, etiquetaEjemplo, matematicas } from "./ui.js?v=20261022132627";
+import { materiaPorId, TIPOS_RECURSO, PREGUNTAS_POR_PRACTICA } from "./config.js?v=20261022140330";
+import { listar, obtener, where } from "./datos.js?v=20261022140330";
+import { sesion, esStaff } from "./sesion.js?v=20261022140330";
+import { esc, vacio, youtubeId, urlVistaPrevia, fechaCorta, etiquetaEjemplo, matematicas } from "./ui.js?v=20261022140330";
 
 const PESTANAS = [
   { id: "temario", nombre: "Temario" },

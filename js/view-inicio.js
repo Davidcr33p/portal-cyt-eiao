@@ -1,8 +1,8 @@
 // Inicio (#/) y catálogo de materias (#/materias).
-import { MATERIAS, materiaPorId, areaPorId } from "./config.js?v=20261022132627";
-import { listar, contar, where, orderBy, limit, concursosPublicados, estadoConcurso } from "./datos.js?v=20261022132627";
-import { sesion } from "./sesion.js?v=20261022132627";
-import { esc, vacio, fechaCorta, hora, mesCorto, aFecha, partesTiempo, dos, etiquetaEjemplo } from "./ui.js?v=20261022132627";
+import { MATERIAS, materiaPorId, areaPorId } from "./config.js?v=20261022140330";
+import { listar, contar, where, orderBy, limit, concursosPublicados, estadoConcurso } from "./datos.js?v=20261022140330";
+import { sesion } from "./sesion.js?v=20261022140330";
+import { esc, vacio, fechaCorta, hora, mesCorto, aFecha, partesTiempo, dos, etiquetaEjemplo } from "./ui.js?v=20261022140330";
 
 // Cuántos recursos y reactivos de práctica tiene cada materia.
 async function conteos() {

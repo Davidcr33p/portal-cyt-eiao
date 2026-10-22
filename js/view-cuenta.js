@@ -1,8 +1,8 @@
 // Cuenta: iniciar sesión, crear cuenta, recuperar contraseña y verificar correo.
-import { DOMINIO_INSTITUCIONAL, SEMESTRES } from "./config.js?v=20261022132627";
-import { obtenerCatalogos } from "./datos.js?v=20261022132627";
-import { sesion, ingresar as entrar, registrar, recuperarContrasena, reenviarVerificacion, recargarSesion } from "./sesion.js?v=20261022132627";
-import { esc, toast, mensajeError, ir } from "./ui.js?v=20261022132627";
+import { DOMINIO_INSTITUCIONAL, SEMESTRES } from "./config.js?v=20261022140330";
+import { obtenerCatalogos } from "./datos.js?v=20261022140330";
+import { sesion, ingresar as entrar, registrar, recuperarContrasena, reenviarVerificacion, recargarSesion } from "./sesion.js?v=20261022140330";
+import { esc, toast, mensajeError, ir } from "./ui.js?v=20261022140330";
 
 const hoja = (titulo, texto) => `
   <header class="hoja"><div class="contenedor"><h1>${esc(titulo)}</h1>${texto ? `<p>${texto}</p>` : ""}</div></header>`;

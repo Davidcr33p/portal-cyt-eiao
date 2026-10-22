@@ -1,8 +1,8 @@
 // Calendario y convocatorias (#/calendario?area=fisica&pasadas=1).
-import { AREAS } from "./config.js?v=20261022132627";
-import { listar } from "./datos.js?v=20261022132627";
-import { esc, vacio, aFecha, mes, ir } from "./ui.js?v=20261022132627";
-import { fechasHTML } from "./view-inicio.js?v=20261022132627";
+import { AREAS } from "./config.js?v=20261022140330";
+import { listar } from "./datos.js?v=20261022140330";
+import { esc, vacio, aFecha, mes, ir } from "./ui.js?v=20261022140330";
+import { fechasHTML } from "./view-inicio.js?v=20261022140330";
 
 export async function render(main, _params, query) {
   const area = query.area || "todas";

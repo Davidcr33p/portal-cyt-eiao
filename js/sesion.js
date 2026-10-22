@@ -1,7 +1,7 @@
 // Sesión: cuenta de Firebase Auth + perfil en usuarios/{uid} + rol efectivo.
-import { auth } from "./firebase.js?v=20261022132627";
-import { DOMINIO_INSTITUCIONAL, ADMIN_EMAILS } from "./config.js?v=20261022132627";
-import { obtener, guardar, serverTimestamp } from "./datos.js?v=20261022132627";
+import { auth } from "./firebase.js?v=20261022140330";
+import { DOMINIO_INSTITUCIONAL, ADMIN_EMAILS } from "./config.js?v=20261022140330";
+import { obtener, guardar, serverTimestamp } from "./datos.js?v=20261022140330";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,

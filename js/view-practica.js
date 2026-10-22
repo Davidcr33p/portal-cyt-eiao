@@ -1,9 +1,9 @@
 // Práctica autogestiva (#/practica/:materia?tema=...): preguntas al azar
 // del banco de reactivos, retroalimentación inmediata y registro del intento.
-import { materiaPorId, PREGUNTAS_POR_PRACTICA } from "./config.js?v=20261022132627";
-import { listar, guardar, where, serverTimestamp } from "./datos.js?v=20261022132627";
-import { sesion } from "./sesion.js?v=20261022132627";
-import { esc, rico, matematicas, mezclar, LETRAS, vacio, toast, mensajeError } from "./ui.js?v=20261022132627";
+import { materiaPorId, PREGUNTAS_POR_PRACTICA } from "./config.js?v=20261022140330";
+import { listar, guardar, where, serverTimestamp } from "./datos.js?v=20261022140330";
+import { sesion } from "./sesion.js?v=20261022140330";
+import { esc, rico, matematicas, mezclar, LETRAS, vacio, toast, mensajeError } from "./ui.js?v=20261022140330";
 
 export async function render(main, { materia }, { tema }) {
   const m = materiaPorId(materia);

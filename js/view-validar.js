@@ -1,6 +1,6 @@
 // Validación pública de constancias (#/validar/:codigo).
-import { obtener } from "./datos.js?v=20261022132627";
-import { esc, fechaLarga, ir } from "./ui.js?v=20261022132627";
+import { obtener } from "./datos.js?v=20261022140330";
+import { esc, fechaLarga, ir } from "./ui.js?v=20261022140330";
 
 export async function render(main, { codigo }) {
   const limpio = (codigo || "").trim().toUpperCase();

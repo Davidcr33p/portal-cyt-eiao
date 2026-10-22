@@ -1,9 +1,9 @@
 // Panel del alumno (#/panel): datos, avance en prácticas, concursos y constancias.
-import { MATERIAS, materiaPorId, SEMESTRES } from "./config.js?v=20261022132627";
-import { listar, obtener, where, obtenerCatalogos, concursosPublicados, estadoConcurso } from "./datos.js?v=20261022132627";
-import { sesion, esStaff, nombreCompleto, actualizarPerfil } from "./sesion.js?v=20261022132627";
-import { esc, vacio, fechaCorta, fechaHora, toast, mensajeError, abrirDialogo, ir } from "./ui.js?v=20261022132627";
-import { descargarConstancia } from "./constancia.js?v=20261022132627";
+import { MATERIAS, materiaPorId, SEMESTRES } from "./config.js?v=20261022140330";
+import { listar, obtener, where, obtenerCatalogos, concursosPublicados, estadoConcurso } from "./datos.js?v=20261022140330";
+import { sesion, esStaff, nombreCompleto, actualizarPerfil } from "./sesion.js?v=20261022140330";
+import { esc, vacio, fechaCorta, fechaHora, toast, mensajeError, abrirDialogo, ir } from "./ui.js?v=20261022140330";
+import { descargarConstancia } from "./constancia.js?v=20261022140330";
 
 export async function render(main) {
   if (!sesion.user) return ir("ingresar?next=panel");

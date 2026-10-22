@@ -1,18 +1,18 @@
 // Arranque, barra de navegación y enrutador por hash (#/ruta). GitHub Pages
 // no permite reescrituras de URL, por eso todas las páginas viven en
 // index.html y la ruta va después del "#".
-import { sesion, iniciar, alCambiar, salir, esStaff, nombreCompleto } from "./sesion.js?v=20261022132627";
-import { esc, toast, cargando, mensajeError, ir } from "./ui.js?v=20261022132627";
-import * as inicio from "./view-inicio.js?v=20261022132627";
-import * as recursos from "./view-recursos.js?v=20261022132627";
-import * as calendario from "./view-calendario.js?v=20261022132627";
-import * as cuenta from "./view-cuenta.js?v=20261022132627";
-import * as panel from "./view-panel.js?v=20261022132627";
-import * as practica from "./view-practica.js?v=20261022132627";
-import * as concursos from "./view-concursos.js?v=20261022132627";
-import * as validar from "./view-validar.js?v=20261022132627";
-import * as admin from "./view-admin.js?v=20261022132627";
-import * as foros from "./view-foros.js?v=20261022132627";
+import { sesion, iniciar, alCambiar, salir, esStaff, nombreCompleto } from "./sesion.js?v=20261022140330";
+import { esc, toast, cargando, mensajeError, ir } from "./ui.js?v=20261022140330";
+import * as inicio from "./view-inicio.js?v=20261022140330";
+import * as recursos from "./view-recursos.js?v=20261022140330";
+import * as calendario from "./view-calendario.js?v=20261022140330";
+import * as cuenta from "./view-cuenta.js?v=20261022140330";
+import * as panel from "./view-panel.js?v=20261022140330";
+import * as practica from "./view-practica.js?v=20261022140330";
+import * as concursos from "./view-concursos.js?v=20261022140330";
+import * as validar from "./view-validar.js?v=20261022140330";
+import * as admin from "./view-admin.js?v=20261022140330";
+import * as foros from "./view-foros.js?v=20261022140330";
 
 // [patrón, vista, sección de la barra]
 const RUTAS = [

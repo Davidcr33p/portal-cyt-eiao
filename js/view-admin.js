@@ -1,11 +1,11 @@
 // Administración (#/admin/:seccion): contenido para docentes y admins;
 // usuarios y catálogos solo para admins. Las reglas de Firestore aplican
 // los mismos permisos del lado del servidor.
-import { MATERIAS, AREAS, TIPOS_RECURSO, TIPOS_EVENTO, materiaPorId } from "./config.js?v=20261022132627";
-import { listar, obtener, guardar, actualizar, borrar, where, Timestamp, serverTimestamp, porNombre, obtenerCatalogos } from "./datos.js?v=20261022132627";
-import { sesion, esStaff, esAdmin } from "./sesion.js?v=20261022132627";
-import { esc, rico, matematicas, vacio, cargando, toast, mensajeError, abrirDialogo, aInputFecha, fechaCorta, fechaHora, descargarCSV, ir, LETRAS } from "./ui.js?v=20261022132627";
-import * as adminConcursos from "./admin-concursos.js?v=20261022132627";
+import { MATERIAS, AREAS, TIPOS_RECURSO, TIPOS_EVENTO, materiaPorId } from "./config.js?v=20261022140330";
+import { listar, obtener, guardar, actualizar, borrar, where, Timestamp, serverTimestamp, porNombre, obtenerCatalogos } from "./datos.js?v=20261022140330";
+import { sesion, esStaff, esAdmin } from "./sesion.js?v=20261022140330";
+import { esc, rico, matematicas, vacio, cargando, toast, mensajeError, abrirDialogo, aInputFecha, fechaCorta, fechaHora, descargarCSV, ir, LETRAS } from "./ui.js?v=20261022140330";
+import * as adminConcursos from "./admin-concursos.js?v=20261022140330";
 
 const SECCIONES = [
   { id: "recursos", nombre: "Recursos", render: seccionRecursos },
