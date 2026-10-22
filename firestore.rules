@@ -1,0 +1,104 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // --- Quién es quién -----------------------------------------------------
+    function signedIn() { return request.auth != null; }
+    function verified() { return signedIn() && request.auth.token.email_verified == true; }
+    function perfilRef() { return /databases/$(database)/documents/usuarios/$(request.auth.uid); }
+    function rol() { return get(perfilRef()).data.rol; }
+
+    // Admins garantizados por correo (mismos que ADMIN_EMAILS en js/config.js).
+    function adminPorCorreo() {
+      return verified() && request.auth.token.email in [
+        'andre.riverac@uanl.edu.mx',
+        'cienciaytecnologia.eiao@uanl.edu.mx'
+      ];
+    }
+    function isAdmin() { return adminPorCorreo() || (verified() && exists(perfilRef()) && rol() == 'admin'); }
+    function isStaff() { return isAdmin() || (verified() && exists(perfilRef()) && rol() == 'docente'); }
+
+    // --- Contenido público: cualquiera lee, solo docentes/admins editan -----
+    match /temarios/{materiaId} { allow read: if true; allow write: if isStaff(); }
+    match /recursos/{id}        { allow read: if true; allow write: if isStaff(); }
+    match /avisos/{id}          { allow read: if true; allow write: if isStaff(); }
+    match /eventos/{id}         { allow read: if true; allow write: if isStaff(); }
+    // Banco de práctica: es público a propósito (la práctica muestra la
+    // respuesta correcta). Las respuestas de concursos viven aparte.
+    match /reactivos/{id}       { allow read: if true; allow write: if isStaff(); }
+    match /planteles/{id}       { allow read: if true; allow write: if isAdmin(); }
+    match /carreras/{id}        { allow read: if true; allow write: if isAdmin(); }
+
+    // --- Perfiles -------------------------------------------------------------
+    // Cada quien crea el suyo siempre como "alumno" y no puede cambiarse el
+    // rol; solo un admin cambia roles.
+    match /usuarios/{uid} {
+      allow read: if (signedIn() && request.auth.uid == uid) || isStaff();
+      allow create: if signedIn() && request.auth.uid == uid && request.resource.data.rol == 'alumno';
+      allow update: if (signedIn() && request.auth.uid == uid && request.resource.data.rol == resource.data.rol) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // --- Intentos de práctica ---------------------------------------------------
+    match /intentos/{id} {
+      allow read: if (signedIn() && resource.data.uid == request.auth.uid) || isStaff();
+      allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
+      allow update, delete: if isStaff();
+    }
+
+    // --- Concursos ----------------------------------------------------------------
+    match /concursos/{cid} {
+      function concurso() { return get(/databases/$(database)/documents/concursos/$(cid)).data; }
+      function inscrito() { return exists(/databases/$(database)/documents/concursos/$(cid)/inscripciones/$(request.auth.uid)); }
+
+      allow read: if resource.data.publicado == true || isStaff();
+      allow write: if isStaff();
+
+      // Las preguntas solo se pueden leer cuando el concurso ya empezó.
+      match /preguntas/{pid} {
+        allow read: if isStaff() || (verified() && inscrito() && request.time >= concurso().inicio);
+        allow write: if isStaff();
+      }
+      // Respuestas correctas: solo staff, y todos al publicar resultados.
+      match /clave/{pid} {
+        allow read: if isStaff() || concurso().resultadosPublicados == true;
+        allow write: if isStaff();
+      }
+      match /inscripciones/{uid} {
+        allow read: if (signedIn() && request.auth.uid == uid) || isStaff();
+        allow create: if verified() && request.auth.uid == uid
+          && concurso().publicado == true
+          && request.time < concurso().fin
+          && request.resource.data.uid == uid;
+        allow delete: if (signedIn() && request.auth.uid == uid && request.time < concurso().inicio) || isStaff();
+        allow update: if isStaff();
+      }
+      // Hoja de respuestas del alumno: solo dentro del horario, con sello de
+      // hora del servidor y sin cambios después de entregar.
+      match /respuestas/{uid} {
+        allow read: if (signedIn() && request.auth.uid == uid) || isStaff();
+        allow create: if verified() && request.auth.uid == uid && inscrito()
+          && request.time >= concurso().inicio && request.time <= concurso().fin
+          && request.resource.data.uid == uid
+          && request.resource.data.actualizadoEn == request.time;
+        allow update: if verified() && request.auth.uid == uid && inscrito()
+          && request.time >= concurso().inicio && request.time <= concurso().fin
+          && resource.data.enviado != true
+          && request.resource.data.uid == uid
+          && request.resource.data.actualizadoEn == request.time;
+        allow delete: if isStaff();
+      }
+      // Resultados (los escribe el staff al calificar): públicos al publicarse.
+      match /resultados/{uid} {
+        allow read: if isStaff() || concurso().resultadosPublicados == true;
+        allow write: if isStaff();
+      }
+    }
+
+    // Constancias: cualquiera las consulta para validarlas por código.
+    match /constancias/{codigo} {
+      allow read: if true;
+      allow write: if isStaff();
+    }
+  }
+}

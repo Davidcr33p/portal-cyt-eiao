@@ -1,0 +1,32 @@
+#!/bin/sh
+# Cache-busting automático.
+#
+# GitHub Pages sirve los archivos con "Cache-Control: max-age=600" (10 min),
+# así que un navegador puede quedarse con un .css/.js viejo hasta 10 minutos
+# después de cada publicación. Este hook pone el mismo ?v=<fecha> en todas las
+# referencias locales (<link>, <script src> e imports entre módulos JS) cuando
+# el commit toca algún .html/.css/.js, para que nunca se mezcle un archivo
+# nuevo con otro viejo en caché. No toca las URLs de CDN.
+#
+# Activarlo una vez por clon:  git config core.hooksPath .githooks
+
+CHANGED=$(git diff --cached --name-only -- '*.html' 'css/*.css' 'js/*.js')
+if [ -z "$CHANGED" ]; then
+  exit 0
+fi
+
+VERSION=$(date +%Y%m%d%H%M%S)
+
+for f in index.html; do
+  [ -f "$f" ] || continue
+  sed -i -E "s#\"((css|js)/[A-Za-z0-9_./-]+\.(css|js))(\?v=[A-Za-z0-9._-]*)?\"#\"\1?v=${VERSION}\"#g" "$f"
+  git add "$f"
+done
+
+for f in js/*.js; do
+  [ -f "$f" ] || continue
+  sed -i -E "s#(from \"\./[A-Za-z0-9_-]+\.js)(\?v=[A-Za-z0-9._-]*)?\"#\1?v=${VERSION}\"#g" "$f"
+  git add "$f"
+done
+
+echo "cache-busting: referencias sincronizadas a v=${VERSION}"

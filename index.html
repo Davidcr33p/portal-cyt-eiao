@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ciencia y Tecnología · EIAO</title>
+  <meta name="description" content="Temarios, documentos, vídeos, prácticas y concursos del Departamento de Ciencia y Tecnología de la Escuela Industrial y Preparatoria Técnica Álvaro Obregón (UANL).">
+  <meta name="theme-color" content="#0A1F3D">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A1F3D'/%3E%3Cpath d='M8 22h16M8 22V10m0 0 5 4m-5-4-3 4' stroke='%23D4A72C' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+  <link rel="stylesheet" href="css/styles.css?v=20261022132627">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="barra">
+    <div class="barra__in">
+      <a class="marca" href="#/" aria-label="Ciencia y Tecnología EIAO, inicio">
+        <!-- Espacio para el logotipo oficial: reemplaza este span por <img src="img/logo.svg" alt="EIAO UANL"> -->
+        <span class="marca__logo" aria-hidden="true"></span>
+        <span class="marca__txt">CyT<span class="marca__sep">·</span>EIAO</span>
+      </a>
+      <button class="barra__menu" type="button" aria-expanded="false" aria-controls="nav-principal">Menú</button>
+      <nav id="nav-principal" class="nav" aria-label="Principal">
+        <a href="#/materias" data-nav="materias">Materias</a>
+        <a href="#/calendario" data-nav="calendario">Calendario</a>
+        <a href="#/concursos" data-nav="concursos">Concursos</a>
+        <a href="#/foros" data-nav="foros">Foros</a>
+        <span class="nav__sesion" id="nav-sesion"></span>
+      </nav>
+    </div>
+  </header>
+
+  <div id="aviso-verificacion" class="franja" hidden></div>
+
+  <main id="contenido" tabindex="-1"></main>
+
+  <footer class="pie">
+    <div class="pie__in">
+      <div>
+        <p class="pie__marca">CyT<span class="marca__sep">·</span>EIAO</p>
+        <p>Departamento de Ciencia y Tecnología<br>Escuela Industrial y Preparatoria Técnica “Álvaro Obregón”, UANL</p>
+      </div>
+      <div>
+        <p class="pie__titulo">Soporte</p>
+        <p>¿Problemas con tu cuenta o con un recurso? Escribe a <a href="mailto:cienciaytecnologia.eiao@uanl.edu.mx">cienciaytecnologia.eiao@uanl.edu.mx</a>.</p>
+      </div>
+      <div>
+        <p class="pie__titulo">Uso</p>
+        <p>Plataforma de uso académico interno. Los datos de registro se usan para inscripciones, resultados y constancias.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script type="module" src="js/app.js?v=20261022132627"></script>
+</body>
+</html>
